@@ -4,24 +4,38 @@ Gestão da liga Imperial7.
 
 ## Dashboard de Gestão
 
-Foram adicionados os arquivos para um painel administrativo de inscrições:
+Foram criados arquivos para um painel administrativo de inscrições usando Python Flask:
 
-- `dashboard.html`
-- `dashboard.css`
-- `dashboard.js`
+- `app.py` - Aplicação Flask principal
+- `templates/dashboard.html` - Template HTML
+- `static/dashboard.css` - Estilos CSS
+- `static/dashboard.js` - Lógica JavaScript
+- `requirements.txt` - Dependências Python
 
-### Como usar
+### Como executar
 
-1. Abra o arquivo `dashboard.html` em um navegador.
-2. Utilize os filtros para buscar inscrições por time, status ou categoria.
-3. Clique em `Exportar CSV` para baixar a lista filtrada de inscrições.
+1. Instale as dependências:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### Recursos incluídos
+2. Execute a aplicação:
+   ```bash
+   python app.py
+   ```
 
-- Resumo de inscrições totais, validadas, pendentes e pagas
-- Aba dedicada de estatísticas com distribuição por categoria e status
-- Filtros por status e categoria
-- Ações rápidas para validar inscrição e marcar pagamento
-- Exportação CSV
+3. Abra o navegador em `http://127.0.0.1:5000/`
 
-Este dashboard é um protótipo local que pode ser integrado a uma API real da Imperial7 conforme os dados da competição.
+### Funcionalidades
+
+- **Aba Gestão**: Lista de inscrições com filtros, estatísticas e ações
+- **Aba Competição**: Tabela de classificação e artilheiros
+- Dados servidos via API REST (endpoints `/api/teams`, `/api/competition`, `/api/scorers`)
+
+### Estrutura
+
+- Dados mockados no `app.py` para demonstração
+- Frontend responsivo com abas
+- Integração frontend-backend via fetch API
+
+Este dashboard é um protótipo que pode ser integrado a um banco de dados real ou APIs externas.

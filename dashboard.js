@@ -56,6 +56,8 @@ const validatedTeamsEl = document.querySelector('#validatedTeams');
 const pendingTeamsEl = document.querySelector('#pendingTeams');
 const paidTeamsEl = document.querySelector('#paidTeams');
 const teamsTableBody = document.querySelector('#teamsTableBody');
+const competitionTableBody = document.querySelector('#competitionTableBody');
+const topScorersTableBody = document.querySelector('#topScorersTableBody');
 const tableCount = document.querySelector('#tableCount');
 const searchInput = document.querySelector('#searchInput');
 const statusFilter = document.querySelector('#statusFilter');
@@ -64,7 +66,7 @@ const exportCsvBtn = document.querySelector('#exportCsvBtn');
 const resetFiltersBtn = document.querySelector('#resetFiltersBtn');
 const tabButtons = document.querySelectorAll('.tab-button');
 const managementTab = document.querySelector('#managementTab');
-const statisticsTab = document.querySelector('#statisticsTab');
+const competitionTab = document.querySelector('#competitionTab');
 const statsTotalTeams = document.querySelector('#statsTotalTeams');
 const statsTotalConfirmed = document.querySelector('#statsTotalConfirmed');
 const statsTotalPending = document.querySelector('#statsTotalPending');
@@ -141,6 +143,64 @@ function getFilteredTeams() {
   });
 }
 
+const competitionData = [
+  {
+    posicao: 1,
+    time: 'Imperial Strikers',
+    jogos: 8,
+    vitorias: 6,
+    empates: 1,
+    derrotas: 1,
+    golsPro: 18,
+    golsContra: 7,
+    saldo: 11,
+    pontos: 19,
+  },
+  {
+    posicao: 2,
+    time: 'Fúria Imperial',
+    jogos: 8,
+    vitorias: 5,
+    empates: 2,
+    derrotas: 1,
+    golsPro: 16,
+    golsContra: 9,
+    saldo: 7,
+    pontos: 17,
+  },
+  {
+    posicao: 3,
+    time: 'Basquete Royals',
+    jogos: 8,
+    vitorias: 4,
+    empates: 1,
+    derrotas: 3,
+    golsPro: 14,
+    golsContra: 12,
+    saldo: 2,
+    pontos: 13,
+  },
+  {
+    posicao: 4,
+    time: 'Dragões do Vôlei',
+    jogos: 8,
+    vitorias: 3,
+    empates: 2,
+    derrotas: 3,
+    golsPro: 12,
+    golsContra: 13,
+    saldo: -1,
+    pontos: 11,
+  },
+];
+
+const topScorersData = [
+  { posicao: 1, atleta: 'Carlos Silva', time: 'Imperial Strikers', gols: 10 },
+  { posicao: 2, atleta: 'Mariana Santos', time: 'Dragões do Vôlei', gols: 8 },
+  { posicao: 3, atleta: 'Luana Ferreira', time: 'Fúria Imperial', gols: 7 },
+  { posicao: 4, atleta: 'Pedro Oliveira', time: 'Basquete Royals', gols: 6 },
+];
+
 function computeStatistics() {
   const total = teams.length;
   const confirmed = teams.filter((team) => team.status === 'confirmado').length;
@@ -180,18 +240,56 @@ function renderStatistics() {
   statsWaitingPayment.textContent = stats.waiting;
 }
 
+function renderTopScorers() {
+  topScorersTableBody.innerHTML = '';
+
+  topScorersData.forEach((item) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${item.posicao}</td>
+      <td>${item.atleta}</td>
+      <td>${item.time}</td>
+      <td>${item.gols}</td>
+    `;
+    topScorersTableBody.appendChild(row);
+  });
+}
+
+function renderCompetition() {
+  competitionTableBody.innerHTML = '';
+
+  competitionData.forEach((item) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${item.posicao}</td>
+      <td>${item.time}</td>
+      <td>${item.jogos}</td>
+      <td>${item.vitorias}</td>
+      <td>${item.empates}</td>
+      <td>${item.derrotas}</td>
+      <td>${item.golsPro}</td>
+      <td>${item.golsContra}</td>
+      <td>${item.saldo}</td>
+      <td>${item.pontos}</td>
+    `;
+    competitionTableBody.appendChild(row);
+  });
+  renderTopScorers();
+}
+
 function switchTab(tab) {
   tabButtons.forEach((button) => {
     button.classList.toggle('active', button.dataset.tab === tab);
   });
   managementTab.classList.toggle('active', tab === 'management');
-  statisticsTab.classList.toggle('active', tab === 'statistics');
+  competitionTab.classList.toggle('active', tab === 'competition');
 }
 
 function refreshDashboard() {
   const filteredTeams = getFilteredTeams();
   updateSummary(filteredTeams);
   renderTeams(filteredTeams);
+  renderStatistics();
 }
 
 function setTeamStatus(id, status) {
@@ -252,11 +350,11 @@ resetFiltersBtn.addEventListener('click', () => {
 tabButtons.forEach((button) => {
   button.addEventListener('click', () => {
     switchTab(button.dataset.tab);
-    if (button.dataset.tab === 'statistics') {
-      renderStatistics();
+    if (button.dataset.tab === 'competition') {
+      renderCompetition();
     }
   });
 });
 
 refreshDashboard();
-renderStatistics();
+renderCompetition();

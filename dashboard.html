@@ -21,7 +21,7 @@
 
       <nav class="dashboard-tabs">
         <button type="button" class="tab-button active" data-tab="management">Gestão</button>
-        <button type="button" class="tab-button" data-tab="statistics">Estatísticas</button>
+        <button type="button" class="tab-button" data-tab="competition">Competição</button>
       </nav>
 
       <div class="tab-content active" id="managementTab">
@@ -30,80 +30,69 @@
             <h2 id="totalTeams">0</h2>
             <p>Times inscritos</p>
           </article>
-        <article class="summary-card">
-          <h2 id="validatedTeams">0</h2>
-          <p>Inscrições validadas</p>
-        </article>
-        <article class="summary-card">
-          <h2 id="pendingTeams">0</h2>
-          <p>Inscrições pendentes</p>
-        </article>
-        <article class="summary-card">
-          <h2 id="paidTeams">0</h2>
-          <p>Pagamentos confirmados</p>
-        </article>
-      </section>
+          <article class="summary-card">
+            <h2 id="validatedTeams">0</h2>
+            <p>Inscrições validadas</p>
+          </article>
+          <article class="summary-card">
+            <h2 id="pendingTeams">0</h2>
+            <p>Inscrições pendentes</p>
+          </article>
+          <article class="summary-card">
+            <h2 id="paidTeams">0</h2>
+            <p>Pagamentos confirmados</p>
+          </article>
+        </section>
 
-      <section class="controls-panel">
-        <div class="filter-group">
-          <label for="searchInput">Buscar time / capitão</label>
-          <input id="searchInput" type="search" placeholder="Ex: Imperials, João" />
-        </div>
-        <div class="filter-group">
-          <label for="statusFilter">Status</label>
-          <select id="statusFilter">
-            <option value="all">Todos</option>
-            <option value="confirmado">Confirmado</option>
-            <option value="pendente">Pendente</option>
-            <option value="aguardando-pagamento">Aguardando pagamento</option>
-          </select>
-        </div>
-        <div class="filter-group">
-          <label for="categoryFilter">Categoria</label>
-          <select id="categoryFilter">
-            <option value="all">Todas</option>
-            <option value="futebol">Futebol</option>
-            <option value="basquete">Basquete</option>
-            <option value="volei">Vôlei</option>
-          </select>
-        </div>
-      </section>
+        <section class="controls-panel">
+          <div class="filter-group">
+            <label for="searchInput">Buscar time / capitão</label>
+            <input id="searchInput" type="search" placeholder="Ex: Imperials, João" />
+          </div>
+          <div class="filter-group">
+            <label for="statusFilter">Status</label>
+            <select id="statusFilter">
+              <option value="all">Todos</option>
+              <option value="confirmado">Confirmado</option>
+              <option value="pendente">Pendente</option>
+              <option value="aguardando-pagamento">Aguardando pagamento</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="categoryFilter">Categoria</label>
+            <select id="categoryFilter">
+              <option value="all">Todas</option>
+              <option value="futebol">Futebol</option>
+              <option value="basquete">Basquete</option>
+              <option value="volei">Vôlei</option>
+            </select>
+          </div>
+        </section>
 
-      <section class="table-panel">
-        <div class="panel-header">
-          <h2>Lista de inscrições</h2>
-          <span id="tableCount">0 resultados</span>
-        </div>
-        <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Time</th>
-                <th>Categoria</th>
-                <th>Status</th>
-                <th>Capitão</th>
-                <th>Contato</th>
-                <th>Valor</th>
-                <th>Inscrição</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody id="teamsTableBody"></tbody>
-          </table>
-        </div>
-      </section>
+        <section class="table-panel">
+          <div class="panel-header">
+            <h2>Lista de inscrições</h2>
+            <span id="tableCount">0 resultados</span>
+          </div>
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Categoria</th>
+                  <th>Status</th>
+                  <th>Capitão</th>
+                  <th>Contato</th>
+                  <th>Valor</th>
+                  <th>Inscrição</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody id="teamsTableBody"></tbody>
+            </table>
+          </div>
+        </section>
 
-      <section class="notes-panel">
-        <h2>Observações</h2>
-        <ul>
-          <li>Use os filtros para acompanhar rapidamente o volume de inscrições por status e categoria.</li>
-          <li>Os botões de ação permitem validar a inscrição ou marcar o pagamento.</li>
-          <li>O dashboard pode ser adaptado para consumir dados reais via API.</li>
-        </ul>
-      </section>
-      </div>
-
-      <div class="tab-content" id="statisticsTab">
         <section class="stats-grid">
           <article class="summary-card">
             <h2 id="statsTotalTeams">0</h2>
@@ -160,6 +149,61 @@
               <strong id="statsWaitingPayment">0</strong>
               <span>Aguardando pagamento</span>
             </div>
+          </div>
+        </section>
+
+        <section class="notes-panel">
+          <h2>Observações</h2>
+          <ul>
+            <li>Use os filtros para acompanhar rapidamente o volume de inscrições por status e categoria.</li>
+            <li>Os botões de ação permitem validar a inscrição ou marcar o pagamento.</li>
+            <li>O dashboard pode ser adaptado para consumir dados reais via API.</li>
+          </ul>
+        </section>
+      </div>
+
+      <div class="tab-content" id="competitionTab">
+        <section class="panel-header">
+          <h2>Tabela de competição</h2>
+          <span id="competitionUpdated">Dados baseados na classificação atual</span>
+        </section>
+        <div class="table-wrapper">
+          <table class="competition-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Time</th>
+                <th>J</th>
+                <th>V</th>
+                <th>E</th>
+                <th>D</th>
+                <th>GP</th>
+                <th>GC</th>
+                <th>SG</th>
+                <th>P</th>
+              </tr>
+            </thead>
+            <tbody id="competitionTableBody"></tbody>
+          </table>
+        </div>
+
+        <section class="scores-panel">
+          <div class="panel-header">
+            <h2>Artilheiros</h2>
+            <span>Atletas com mais gols na competição</span>
+          </div>
+          <div class="table-wrapper">
+            <table class="competition-table">
+              <thead>
+                <tr>
+                  <th>Posição</th>
+                  <th>Atleta</th>
+                  <th>Time</th>
+                  <th>Gols</th>
+                </tr>
+              </thead>
+              <tbody id="topScorersTableBody"></tbody>
+            </table>
           </div>
         </section>
       </div>
